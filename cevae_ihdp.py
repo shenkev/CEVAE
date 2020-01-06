@@ -188,11 +188,12 @@ for i, (train, valid, test, contfeats, binfeats) in enumerate(dataset.get_train_
                 y0, y1 = get_y0_y1(sess, y_post, f0t, f1t, shape=yte.shape, L=1)
                 y0, y1 = y0 * ys + ym, y1 * ys + ym
                 score_test = evaluator_test.calc_stats(y1, y0)
+                rmses_test = evaluator_test.y_errors(y0, y1)
 
                 print("Epoch: {}/{}, log p(x) >= {:0.3f}, ite_tr: {:0.3f}, ate_tr: {:0.3f}, pehe_tr: {:0.3f}, " \
-                      "rmse_f_tr: {:0.3f}, rmse_cf_tr: {:0.3f}, ite_te: {:0.3f}, ate_te: {:0.3f}, pehe_te: {:0.3f}, " \
+                      "rmse_f_tr: {:0.3f}, rmse_cf_tr: {:0.3f}, ite_te: {:0.3f}, ate_te: {:0.3f}, pehe_te: {:0.3f}, rmse_f_te: {:0.3f}, rmse_cf_te: {:0.3f}, " \
                       "dt: {:0.3f}".format(epoch + 1, n_epoch, avg_loss, score_train[0], score_train[1], score_train[2],
-                                           rmses_train[0], rmses_train[1], score_test[0], score_test[1], score_test[2],
+                                           rmses_train[0], rmses_train[1], score_test[0], score_test[1], score_test[2], rmses_test[0], rmses_test[1],
                                            time.time() - t0))
 
         saver.restore(sess, 'models/m6-ihdp')
