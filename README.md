@@ -1,3 +1,19 @@
+# Instructions to Run
+
+1. pip install -r requirements.txt
+2. python cevae_ihdp.py
+
+# Explanation of the Data
+
+The data is broken into train, val, test. Each sample has the following fields:
+
+- treatment, also called t
+- outcome factual, also called y_f
+- outcome counterfactual, also called y_cf
+- true outcome control (outcome is drawn from a Gaussian distribution around this value), also called mu0
+- true outcome treatment, also called mu1
+- features, also called x
+
 # CEVAE
 This repository contains the code for the  Causal Effect Variational 
 Autoencoder (CEVAE) model as developed at [1]. 
